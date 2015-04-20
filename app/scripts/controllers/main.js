@@ -8,30 +8,24 @@
  * Controller of the yogaApp
  */
 angular.module('yogaApp')
-	.controller('MainCtrl', function ($scope, $interval) {
+	.controller('MainCtrl', [
+		'$scope',
+		'$interval',
+		'api',
+	function ($scope, $interval, Api) {
 
-		var currentPose = 0;
+		var timer,
+			currentPose = 0;
 
 		$scope.sequenceOver = false;
 
-		$scope.sequence = {
-			poses : [
-				{
-					name: 'Utthita Trikonasana',
-					easy_name: 'Triangle',
-					time: 5,
-				},
-				{
-					name: 'Utthita Parsvakonasana',
-					easy_name: 'Extended Side Angle',
-					time: 5,
-				},
-			],
-		};
+		Api.getSequence(startSequence);
 
-		setupPose(currentPose);
-
-		var timer = $interval(updatePose, 1000);
+		function startSequence(sequence) {
+			$scope.sequence = sequence;
+			setupPose(currentPose);
+			timer = $interval(updatePose, 1000);
+		}
 
 		function setupPose(poseId) {
 			$scope.pose = $scope.sequence.poses[currentPose];
@@ -71,4 +65,4 @@ angular.module('yogaApp')
 			$scope.sequenceOver = true;
 		};
 
-	});
+	}]);
