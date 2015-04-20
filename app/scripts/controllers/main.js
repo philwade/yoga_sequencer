@@ -15,27 +15,32 @@ angular.module('yogaApp')
 		$scope.sequenceOver = false;
 
 		$scope.sequence = {
-			pose_length : 60,
 			poses : [
 				{
-					name: 'Utthuta Trikonasana',
+					name: 'Utthita Trikonasana',
 					easy_name: 'Triangle',
-					time_left: 5,
+					time: 5,
 				},
 				{
 					name: 'Utthita Parsvakonasana',
 					easy_name: 'Extended Side Angle',
-					time_left: 5,
+					time: 5,
 				},
 			],
 		};
 
-		$scope.pose = $scope.sequence.poses[currentPose];
+		setupPose(currentPose);
 
-		$interval(updatePose, 1000);
+		var timer = $interval(updatePose, 1000);
+
+		function setupPose(poseId) {
+			$scope.pose = $scope.sequence.poses[currentPose];
+			$scope.time = $scope.sequence.poses[currentPose].time || $scope.sequence.pose_length;
+			currentPose = poseId;
+		}
 
 		function updatePose() {
-			var left = $scope.pose.time_left;
+			var left = $scope.time;
 
 			if(left === 0)
 			{
@@ -43,20 +48,20 @@ angular.module('yogaApp')
 				return;
 			}
 
-			$scope.pose.time_left = $scope.pose.time_left - 1;
+			$scope.time = $scope.time - 1;
 		};
 
 		function nextPose() {
 			var nextPose = currentPose += 1;
 
-			if(nextPose <= $scope.sequence.poses.length)
+			if(nextPose < $scope.sequence.poses.length)
 			{
 				console.log('next pose');
-				$scope.pose = $scope.sequence.poses[nextPose];
-				currentPose = nextPose;
+				setupPose(nextPose);
 			}
 			else
 			{
+				$interval.cancel(timer);
 				endSequence();
 			}
 		};

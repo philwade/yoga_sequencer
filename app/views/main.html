@@ -1,7 +1,7 @@
-<div ng-if="!sequenceOver">
+<div ng-if="!sequenceOver" class="container">
 	<h1>{{ pose.name }}</h1>
 	<h3>({{ pose.easy_name }})</h3>
-	<h3>Time: {{ pose.time_left }}</h3>
+	<h3>Time: {{ time }}</h3>
 </div>
 <div ng-if="sequenceOver">
 	<h1>End of sequence!</h1>
