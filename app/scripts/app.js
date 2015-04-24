@@ -30,6 +30,14 @@ angular
         templateUrl: 'views/create.html',
         controller: 'CreateCtrl'
       })
+	  .when('/addpose', {
+	  	templateUrl: 'views/addpose.html',
+		controller: 'CreatePoseCtrl'
+	  })
+	  .when('/editpose/:poseId', {
+	  	templateUrl: 'views/addpose.html',
+		controller: 'CreatePoseCtrl'
+	  })
       .otherwise({
         redirectTo: '/'
       });

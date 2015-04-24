@@ -11,6 +11,25 @@ angular.module('yogaApp')
 					$http.get(
 						baseUrl + '/sequence'
 					).success(successCallback);
+				},
+				getPose: function(poseId, successCallback) {
+
+					var url = '/pose';
+
+					if(typeof poseId !== 'undefined')
+					{
+						url += '/' + poseId;
+					}
+					$http.get(
+						baseUrl + url
+					).success(successCallback);
+				},
+				savePose: function(pose, successCallback) {
+					$http.post(
+						baseUrl + '/pose',
+						pose
+					).success(successCallback);
 				}
+
 			};
 		}]);
