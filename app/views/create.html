@@ -5,13 +5,17 @@
 		And lasts <b>{{ sequence.duration }}</b> seconds
 	</div>
 </div>
-<div ng-repeat="pose in sequence.poses">
+<div ng-repeat="sequencePose in sequence.sequencePoses">
 	<div class="panel panel-default">
-		<div class="panel-heading">{{ pose.name }}</div>
+		<div class="panel-heading">{{ sequencePose.pose.name }}</div>
 		<div class="panel-body">
-			<h3>({{ pose.easy_name }})</h3>
-			<p>Duration is {{ pose.time }}</p>
+			<h3>({{ sequencePose.pose.simplename }})</h3>
+			<p>Duration is <input type="text" ng-model="sequencePose.duration"/> seconds</p>
 		</div>
 	</div>
 </div>
-<button type="button" class="btn btn-success"><span class="glyphicon-plus"></span> Add a pose</button>
+<input type="text" id="search" ng-model="searchTerm" ng-change="search()"/>
+<button type="button" class="btn btn-success" ng-click="addPose()"><span class="glyphicon-plus"></span> Add a pose</button>
+<ul class="list-group" ng-repeat="result in searchResults">
+	<li class="list-group-item">{{ result.name }} ({{result.simplename}})</li>
+</ul>

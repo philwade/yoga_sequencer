@@ -1,6 +1,6 @@
 <div ng-if="!sequenceOver" class="container">
-	<h1>{{ pose.name }}</h1>
-	<h3>({{ pose.easy_name }})</h3>
+	<h1>{{ pose.pose.name }}</h1>
+	<h3>({{ pose.pose.simplename }})</h3>
 	<h3>Time: {{ time }}</h3>
 </div>
 <div ng-if="sequenceOver">

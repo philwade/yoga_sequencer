@@ -28,8 +28,8 @@ angular.module('yogaApp')
 		}
 
 		function setupPose(poseId) {
-			$scope.pose = $scope.sequence.poses[currentPose];
-			$scope.time = $scope.sequence.poses[currentPose].time || $scope.sequence.pose_length;
+			$scope.pose = $scope.sequence.sequencePoses[currentPose];
+			$scope.time = $scope.sequence.sequencePoses[currentPose].duration || $scope.sequence.pose_length;
 			currentPose = poseId;
 		}
 
@@ -48,7 +48,7 @@ angular.module('yogaApp')
 		function nextPose() {
 			var nextPose = currentPose += 1;
 
-			if(nextPose < $scope.sequence.poses.length)
+			if(nextPose < $scope.sequence.sequencePoses.length)
 			{
 				console.log('next pose');
 				setupPose(nextPose);
