@@ -15,12 +15,31 @@ angular.module('yogaApp')
 			$scope.sequence = sequence;
 		}
 
-		$scope.addPose = function() {
+		$scope.addPose = function(pose) {
+			var newSequencePose = {
+				pose: pose,
+				duration: 60,
+				ordinality: $scope.sequence.sequencePoses.length,
+			}
+			$scope.sequence.sequencePoses.push(newSequencePose);
 		};
 
 		$scope.search = function() {
-			Api.searchPoses({ 'search': $scope.searchTerm }, function(response) {
-				$scope.searchResults = response.results;
+			if($scope.searchTerm.length > 2)
+			{
+				Api.searchPoses({ 'search': $scope.searchTerm }, function(response) {
+					$scope.searchResults = response.results;
+				});
+			}
+			else
+			{
+				$scope.searchResults = [];
+			}
+		};
+
+		$scope.saveSequence = function() {
+			Api.saveSequence({ 'sequence': $scope.sequence }, function(response) {
+				$scope.sequence = response;
 			});
-		}
+		};
 	}]);

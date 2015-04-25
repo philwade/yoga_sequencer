@@ -35,6 +35,12 @@ angular.module('yogaApp')
 						baseUrl + '/pose/search',
 						searchTerm
 					).success(successCallback);
+				},
+				saveSequence: function(sequence, successCallback) {
+					$http.post(
+						baseUrl + '/sequence/save',
+						sequence
+					).success(successCallback);
 				}
 
 			};
