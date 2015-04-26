@@ -7,9 +7,16 @@ angular.module('yogaApp')
 			var baseUrl = 'http://127.0.0.1:5000/api';
 
 			return {
-				getSequence: function(successCallback) {
+				getSequence: function(sequenceId, successCallback) {
+					var url = '/sequence';
+
+					if(typeof sequenceId !== 'undefined')
+					{
+						url += '/' + sequenceId
+					}
+
 					$http.get(
-						baseUrl + '/sequence'
+						baseUrl + url
 					).success(successCallback);
 				},
 				getPose: function(poseId, successCallback) {

@@ -26,6 +26,10 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/sequence/edit/:sequenceId', {
+        templateUrl: 'views/create.html',
+        controller: 'CreateCtrl'
+      })
       .when('/create', {
         templateUrl: 'views/create.html',
         controller: 'CreateCtrl'

@@ -4,12 +4,13 @@ angular.module('yogaApp')
 	.controller('CreateCtrl', [
 		'$scope',
 		'api',
-	function($scope, Api) {
+		'$routeParams',
+	function($scope, Api, $routeParams) {
 
 		$scope.searchResults = [];
 		$scope.queryTerm = '';
 
-		Api.getSequence(callback);
+		Api.getSequence($routeParams.sequenceId, callback);
 
 		function callback(sequence) {
 			$scope.sequence = sequence;
