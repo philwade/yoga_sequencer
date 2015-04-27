@@ -8,7 +8,7 @@
  * Controller of the yogaApp
  */
 angular.module('yogaApp')
-	.controller('MainCtrl', [
+	.controller('PlaySequenceCtrl', [
 		'$scope',
 		'$interval',
 		'api',
