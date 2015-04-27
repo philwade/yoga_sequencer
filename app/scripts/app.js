@@ -30,15 +30,15 @@ angular
         templateUrl: 'views/create.html',
         controller: 'CreateCtrl'
       })
-      .when('/create', {
+      .when('/sequence/create', {
         templateUrl: 'views/create.html',
         controller: 'CreateCtrl'
       })
-	  .when('/addpose', {
+	  .when('/pose/add', {
 	  	templateUrl: 'views/addpose.html',
 		controller: 'CreatePoseCtrl'
 	  })
-	  .when('/editpose/:poseId', {
+	  .when('/pose/edit/:poseId', {
 	  	templateUrl: 'views/addpose.html',
 		controller: 'CreatePoseCtrl'
 	  })
