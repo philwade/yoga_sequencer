@@ -9,6 +9,7 @@ angular.module('yogaApp')
 
 		$scope.searchResults = [];
 		$scope.queryTerm = '';
+		var toRemove = [];
 
 
 		var callback = function(sequence) {
@@ -47,9 +48,23 @@ angular.module('yogaApp')
 		};
 
 		$scope.saveSequence = function() {
-			Api.saveSequence({ 'sequence': $scope.sequence }, function(response) {
+			Api.saveSequence({ 'sequence': $scope.sequence, 'toRemove': toRemove }, function(response) {
 				$scope.sequence = response;
+				toRemove = [];
 			});
+		};
+
+		$scope.removePose = function(sequencePose) {
+			var sequencePoseIndex = $scope.sequence.sequencePoses.indexOf(sequencePose);
+			var poseToRemove = $scope.sequence.sequencePoses[sequencePoseIndex];
+
+			if(typeof poseToRemove.id !== 'undefined')
+			{
+				toRemove.push(poseToRemove.id);
+			}
+
+			$scope.sequence.sequencePoses.splice(sequencePoseIndex, 1);
+			reOrderPoses();
 		};
 
 		$scope.dragCallbacks = {
