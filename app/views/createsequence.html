@@ -5,14 +5,18 @@
 		And lasts <b>{{ sequence.duration }}</b> seconds
 	</div>
 </div>
-<div ng-repeat="sequencePose in sequence.sequencePoses">
-	<div class="panel panel-default">
-		<div class="panel-heading">{{ sequencePose.pose.name }}</div>
-		<div class="panel-body">
-			<h3>({{ sequencePose.pose.simplename }})</h3>
-			<p>Duration is <input type="text" ng-model="sequencePose.duration"/> seconds</p>
-		</div>
-	</div>
+<div ui-tree="dragCallbacks">
+	<ol ui-tree-nodes="" ng-model="sequence.sequencePoses">
+		<li ng-repeat="sequencePose in sequence.sequencePoses" ui-tree-node>
+			<div class="panel panel-default" ui-tree-handle>
+				<div class="panel-heading">{{ sequencePose.pose.name }}</div>
+				<div class="panel-body">
+					<h3>({{ sequencePose.pose.simplename }})</h3>
+					<p>Duration is <input type="text" ng-model="sequencePose.duration"/> seconds</p>
+				</div>
+			</div>
+		</li>
+	</ol>
 </div>
 <div class="panel panel-primary">
 	<div class="panel-heading">

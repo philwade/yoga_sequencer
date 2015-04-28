@@ -10,11 +10,19 @@ angular.module('yogaApp')
 		$scope.searchResults = [];
 		$scope.queryTerm = '';
 
-		Api.getSequence($routeParams.sequenceId, callback);
 
-		function callback(sequence) {
+		var callback = function(sequence) {
 			$scope.sequence = sequence;
-		}
+		};
+
+		var reOrderPoses = function() {
+			for(var i = 0; i < $scope.sequence.sequencePoses.length; i++)
+			{
+				$scope.sequence.sequencePoses[i].ordinality = i;
+			}
+		};
+
+		Api.getSequence($routeParams.sequenceId, callback);
 
 		$scope.addPose = function(pose) {
 			var newSequencePose = {
@@ -42,5 +50,12 @@ angular.module('yogaApp')
 			Api.saveSequence({ 'sequence': $scope.sequence }, function(response) {
 				$scope.sequence = response;
 			});
+		};
+
+		$scope.dragCallbacks = {
+			dropped: function(event) {
+				reOrderPoses();
+				console.log($scope.sequence);
+			}
 		};
 	}]);
