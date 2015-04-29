@@ -12,16 +12,28 @@ angular.module('yogaApp')
 		var toRemove = [];
 
 
-		var callback = function(sequence) {
-			$scope.sequence = sequence;
-		};
-
 		var reOrderPoses = function() {
 			for(var i = 0; i < $scope.sequence.sequencePoses.length; i++)
 			{
 				$scope.sequence.sequencePoses[i].ordinality = i;
 			}
 		};
+
+		var calculateTotalTime = function() {
+			var total = 0;
+			for(var i = 0; i < $scope.sequence.sequencePoses.length; i++)
+			{
+				total += $scope.sequence.sequencePoses[i].duration;
+			}
+
+			$scope.totalTime = total;
+		};
+
+		var callback = function(sequence) {
+			$scope.sequence = sequence;
+			calculateTotalTime();
+		};
+
 
 		Api.getSequence($routeParams.sequenceId, callback);
 
@@ -32,6 +44,7 @@ angular.module('yogaApp')
 				ordinality: $scope.sequence.sequencePoses.length,
 			}
 			$scope.sequence.sequencePoses.push(newSequencePose);
+			calculateTotalTime();
 		};
 
 		$scope.search = function() {
@@ -65,6 +78,7 @@ angular.module('yogaApp')
 
 			$scope.sequence.sequencePoses.splice(sequencePoseIndex, 1);
 			reOrderPoses();
+			calculateTotalTime();
 		};
 
 		$scope.dragCallbacks = {
@@ -73,4 +87,5 @@ angular.module('yogaApp')
 				console.log($scope.sequence);
 			}
 		};
+
 	}]);
