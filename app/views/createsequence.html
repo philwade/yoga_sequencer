@@ -1,8 +1,11 @@
 <div class="panel panel-default">
 	<div class="panel-heading">About this sequence</div>
 	<div class="panel-body">
-		<p>It is called <b><input type="text" ng-model="sequence.name"/></b>
+		<p>It is called <b><input type="text" class="form-control" ng-model="sequence.name"/></b>
 		And lasts <b>{{ totalTime }}</b> seconds
+		<p> Description </p>
+		<p><textarea class="form-control" ng-model="sequence.description"/></p>
+		<p>The default length for poses is <input type="number" class="form-control" ng-model="sequence.default_duration"/> seconds</p>
 	</div>
 </div>
 <div ui-tree="dragCallbacks">

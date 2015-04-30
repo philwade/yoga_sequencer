@@ -40,7 +40,7 @@ angular.module('yogaApp')
 		$scope.addPose = function(pose) {
 			var newSequencePose = {
 				pose: pose,
-				duration: 60,
+				duration: $scope.sequence.default_duration,
 				ordinality: $scope.sequence.sequencePoses.length,
 			}
 			$scope.sequence.sequencePoses.push(newSequencePose);
