@@ -1,52 +1,58 @@
-<div class="panel panel-default">
-	<div class="panel-heading">About this sequence</div>
-	<div class="panel-body">
-		<p>It is called <b><input type="text" class="form-control" ng-model="sequence.name"/></b>
-		And lasts <b>{{ totalTime }}</b> seconds
-		<p> Description </p>
-		<p><textarea class="form-control" ng-model="sequence.description"/></p>
-		<p>The default length for poses is <input type="number" class="form-control" ng-model="sequence.default_duration"/> seconds</p>
-	</div>
-</div>
-<div ui-tree="dragCallbacks">
-	<ol ui-tree-nodes="" ng-model="sequence.sequencePoses">
-		<li ng-repeat="sequencePose in sequence.sequencePoses" ui-tree-node>
-			<div class="panel panel-default" ui-tree-handle>
-				<div class="panel-heading">{{ sequencePose.pose.name }}</div>
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-md-8">
-							<img src="{{ sequencePose.pose.poseImage.url }}"/>
-							<h3>({{ sequencePose.pose.simplename }})</h3>
-							<p>Duration is <input type="text" ng-model="sequencePose.duration"/> seconds</p>
-						</div>
-						<div class="col-md-4">
-							<button type="button" class="btn btn-danger" ng-click="removePose(sequencePose)">
-								<span class="glyphicon glyphicon-remove"></span>
-								Remove
-							</button>
+<div class="row">
+<div class="col-md-7">
+	<div ui-tree="dragCallbacks">
+		<ol ui-tree-nodes="" ng-model="sequence.sequencePoses">
+			<li ng-repeat="sequencePose in sequence.sequencePoses" ui-tree-node>
+				<div class="panel panel-default" ui-tree-handle>
+					<div class="panel-heading">{{ sequencePose.pose.name }}</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-8">
+								<img class="img-responsive" src="{{ sequencePose.pose.poseImage.url }}"/>
+								<h3>({{ sequencePose.pose.simplename }})</h3>
+								<p>Duration is <input type="text" ng-model="sequencePose.duration"/> seconds</p>
+							</div>
+							<div class="col-md-4">
+								<button type="button" class="btn btn-danger" ng-click="removePose(sequencePose)">
+									<span class="glyphicon glyphicon-remove"></span>
+									Remove
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</li>
-	</ol>
-</div>
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-			Search Poses to add
-		</h3>
+			</li>
+		</ol>
 	</div>
-	<div class="panel-body">
-		<input type="text" class="form-control" id="search" ng-model="searchTerm" ng-change="search()"/>
-		<div class="button-group" ng-repeat="result in searchResults">
-			<button type="button" class="btn btn-block btn-primary" ng-click="addPose(result)">
-			<span class="glyphicon glyphicon-plus"></span> {{ result.name }} ({{result.simplename}})
-			</button>
+	</div>
+	<div class="col-md-5">
+	<div class="panel panel-default">
+		<div class="panel-heading">About this sequence</div>
+		<div class="panel-body">
+			<p>It is called <b><input type="text" class="form-control" ng-model="sequence.name"/></b>
+			And lasts <b>{{ totalTime }}</b> seconds
+			<p> Description </p>
+			<p><textarea class="form-control" ng-model="sequence.description"/></p>
+			<p>The default length for poses is <input type="number" class="form-control" ng-model="sequence.default_duration"/> seconds</p>
 		</div>
-		<button type="button" class="btn btn-success" ng-click="saveSequence()">
-			Save Sequence
-		</button>
+	</div>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				Search Poses to add
+			</h3>
+		</div>
+		<div class="panel-body">
+			<input type="text" class="form-control" id="search" ng-model="searchTerm" ng-change="search()"/>
+			<div class="button-group" ng-repeat="result in searchResults">
+				<button type="button" class="btn btn-block btn-primary" ng-click="addPose(result)">
+				<span class="glyphicon glyphicon-plus"></span> {{ result.name }} ({{result.simplename}})
+				</button>
+			</div>
+			<button type="button" class="btn btn-success" ng-click="saveSequence()">
+				Save Sequence
+			</button>
+		<div>
+	<div>
 	<div>
 <div>
