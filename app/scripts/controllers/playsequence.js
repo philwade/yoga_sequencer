@@ -12,14 +12,15 @@ angular.module('yogaApp')
 		'$scope',
 		'$interval',
 		'api',
-	function ($scope, $interval, Api) {
+		'$routeParams',
+	function ($scope, $interval, Api, $routeParams) {
 
 		var timer,
 			currentPose = 0;
 
 		$scope.sequenceOver = false;
 
-		Api.getSequence(startSequence);
+		Api.getSequence($routeParams.sequenceId, startSequence);
 
 		function startSequence(sequence) {
 			$scope.sequence = sequence;
