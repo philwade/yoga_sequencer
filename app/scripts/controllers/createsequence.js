@@ -29,6 +29,8 @@ angular.module('yogaApp')
 			$scope.totalTime = total;
 		};
 
+		$scope.calculateTotalTime = calculateTotalTime;
+
 		var callback = function(sequence) {
 			$scope.sequence = sequence;
 			calculateTotalTime();
