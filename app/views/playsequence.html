@@ -3,6 +3,7 @@
 	<img class="img-responsive" src="{{ pose.pose.poseImage.url }}"/>
 	<h3>({{ pose.pose.simplename }})</h3>
 	<h3>Time: {{ time }}</h3>
+	<audio id="change" src="sounds/bowl.wav"></audio>
 </div>
 <div ng-if="sequenceOver">
 	<h1>End of sequence!</h1>

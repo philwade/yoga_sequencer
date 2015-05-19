@@ -48,6 +48,8 @@ angular.module('yogaApp')
 
 		function nextPose() {
 			var nextPose = currentPose += 1;
+			angular.element('#change')[0].currentTime = 0;
+			angular.element('#change')[0].play();
 
 			if(nextPose < $scope.sequence.sequencePoses.length)
 			{
