@@ -8,7 +8,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-8">
-								<img class="img-responsive" src="{{ sequencePose.pose.poseImage.url }}"/>
+								<img class="img-responsive" src="{{ sequencePose.pose.poseImage.url || 'images/asanas/missingasana.png' }}"/>
 								<h3>({{ sequencePose.pose.simplename }})</h3>
 								<p>Duration is <input type="number" ng-model="sequencePose.duration" ng-change="calculateTotalTime()"/> seconds</p>
 							</div>
